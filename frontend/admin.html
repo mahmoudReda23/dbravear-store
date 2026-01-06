@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>إدارة dbravear</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .admin-box { padding: 30px; max-width: 1000px; margin: auto; }
+        .form-group { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px #ccc; }
+        input { padding: 10px; margin: 5px; border: 1px solid #ddd; }
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="admin-box">
+        <h1>لوحة تحكم المنتجات</h1>
+        <div class="form-group">
+            <h3>إضافة منتج جديد</h3>
+            <input type="text" id="name" placeholder="الاسم">
+            <input type="text" id="cat" placeholder="القسم">
+            <input type="number" id="price" placeholder="السعر">
+            <input type="text" id="img" placeholder="رابط الصورة">
+            <input type="number" id="stock" placeholder="الكمية">
+            <button onclick="saveProduct()">إضافة</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>المنتج</th>
+                    <th>الكمية</th>
+                    <th>متاح؟</th>
+                    <th>حذف</th>
+                </tr>
+            </thead>
+            <tbody id="admin-list"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const API = 'http://localhost:5000/api/products';
+
+        async function load() {
+            const res = await fetch(API);
+            const data = await res.json();
+            document.getElementById('admin-list').innerHTML = data.map(p => `
+                <tr>
+                    <td>${p.name}</td>
+                    <td><input type="number" value="${p.stock}" onchange="update(${p.id}, this.value, ${p.is_available})"></td>
+                    <td><input type="checkbox" ${p.is_available ? 'checked' : ''} onchange="update(${p.id}, ${p.stock}, this.checked?1:0)"></td>
+                    <td><button onclick="del(${p.id})" style="color:red">حذف</button></td>
+                </tr>
+            `).join('');
+        }
+
+        async function saveProduct() {
+            const product = {
+                name: document.getElementById('name').value,
+                category: document.getElementById('cat').value,
+                price: document.getElementById('price').value,
+                image_url: document.getElementById('img').value,
+                stock: document.getElementById('stock').value
+            };
+            await fetch(API, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(product) });
+            location.reload();
+        }
+
+        async function update(id, stock, status) {
+            await fetch(`${API}/${id}`, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({stock, is_available: status}) });
+        }
+
+        async function del(id) {
+            if(confirm('متأكد؟')) {
+                await fetch(`${API}/${id}`, { method: 'DELETE' });
+                location.reload();
+            }
+        }
+        window.onload = load;
+    </script>
+</body>
+</html>

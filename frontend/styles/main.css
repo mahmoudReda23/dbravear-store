@@ -1,0 +1,29 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #f4f4f4; color: #333; line-height: 1.6; }
+
+/* Navbar */
+.navbar { display: flex; justify-content: space-between; align-items: center; background: #131921; padding: 10px 5%; color: white; position: sticky; top: 0; z-index: 1000; }
+.logo { font-size: 24px; font-weight: bold; color: #febd69; text-decoration: none; }
+.search-bar { display: flex; flex: 1; margin: 0 20px; }
+.search-bar input { width: 100%; padding: 10px; border-radius: 0 5px 5px 0; border: none; }
+.search-bar button { padding: 10px 20px; background: #febd69; border: none; border-radius: 5px 0 0 5px; cursor: pointer; }
+.nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; text-align: center; }
+
+/* Hero */
+.hero { height: 300px; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1557170334-a9632e77c6e4?w=1000'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+
+/* Categories */
+.categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; padding: 20px 5%; margin-top: -30px; }
+.category-card { background: white; padding: 20px; text-align: center; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s; }
+.category-card:hover { transform: translateY(-5px); background: #febd69; }
+.category-card i { font-size: 30px; margin-bottom: 10px; display: block; }
+
+/* Products Grid */
+#products-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; padding: 40px 5%; }
+.product-card { background: white; padding: 20px; border-radius: 10px; text-align: right; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.product-card img { width: 100%; height: 200px; object-fit: contain; }
+.product-card h3 { font-size: 18px; margin: 10px 0; }
+.product-card .price { color: #B12704; font-size: 20px; font-weight: bold; }
+.add-to-cart-btn { width: 100%; padding: 10px; background: #ffd814; border: 1px solid #fcd200; border-radius: 20px; cursor: pointer; margin-top: 10px; }
+
+footer { background: #232f3e; color: white; text-align: center; padding: 30px; margin-top: 20px; }

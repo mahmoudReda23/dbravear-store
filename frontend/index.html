@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dbravear | متجر الجمال والأناقة</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">dbravear</a>
+            <div class="search-bar">
+                <input type="text" id="user-search" placeholder="ابحث عن منتج...">
+                <button type="button" id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-links">
+                <a href="#"><i class="fas fa-user"></i><span>حسابي</span></a>
+                <a href="#"><i class="fas fa-shopping-cart"></i><span>السلة</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>عالمك الخاص للجمال والأناقة</h1>
+        <p>عطور فاخرة، عناية بالبشرة، وأحدث الملابس.</p>
+    </section>
+
+    <section class="categories">
+        <div class="category-card" onclick="filterProducts('عطور')">
+            <i class="fas fa-wine-bottle"></i><h3>عطور</h3>
+        </div>
+        <div class="category-card" onclick="filterProducts('عناية بالبشرة')">
+            <i class="fas fa-sparkles"></i><h3>بشرة</h3>
+        </div>
+        <div class="category-card" onclick="filterProducts('ملابس')">
+            <i class="fas fa-tshirt"></i><h3>ملابس</h3>
+        </div>
+        <div class="category-card" onclick="fetchProducts()">
+            <i class="fas fa-th-large"></i><h3>الكل</h3>
+        </div>
+    </section>
+
+    <main id="products-container">
+        <p style="text-align:center;">جاري تحميل المنتجات...</p>
+    </main>
+
+    <footer>
+        <p>جميع الحقوق محفوظة لمتجر dbravear &copy; 2026</p>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
